@@ -1,4 +1,4 @@
-const CACHE_NAME = "kurultai-app-v30";
+const CACHE_NAME = "kurultai-app-v32";
 
 self.addEventListener("install", event => {
   self.skipWaiting();
