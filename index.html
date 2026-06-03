@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <title>Курултай: Битва легенд</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#2a1036" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Курултай" />
+  <link rel="apple-touch-icon" href="images/app-icons/icon-192.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css?v=15" />
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- Главная -->
+    <section id="screen-home" class="screen screen-home active">
+      <div class="hero">
+        <img
+          src="images/logo/kurultai-logo.png"
+          alt="Курултай: Битва легенд"
+          class="main-screen-logo"
+        />
+
+        <p class="hero-subtitle">
+          Мобильное приложение-компаньон для настольной игры: энциклопедия персонажей,
+          викторина, правила и информация о проекте.
+        </p>
+
+        <button class="main-button" onclick="showScreen('heroes')">
+          Начать
+        </button>
+
+        <div class="hero-tags">
+          <span>Татарская культура</span>
+          <span>История</span>
+          <span>Мифология</span>
+          <span>Викторина</span>
+        </div>
+      </div>
+
+      <div class="section-divider">
+        <span></span>
+      </div>
+
+      <div class="menu-grid">
+        <button class="menu-card menu-encyclopedia" onclick="showScreen('heroes')">
+          <div class="menu-card-content">
+            <strong>Герои</strong>
+            <small>Энциклопедия персонажей</small>
+          </div>
+        </button>
+
+        <button class="menu-card menu-quiz" onclick="showScreen('quiz')">
+          <div class="menu-card-content">
+            <strong>Викторина</strong>
+            <small>Вопросы Курултая</small>
+          </div>
+        </button>
+
+        <button class="menu-card menu-rules" onclick="showScreen('rules')">
+          <div class="menu-card-content">
+            <strong>Правила</strong>
+            <small>Как использовать приложение</small>
+          </div>
+        </button>
+
+        <button class="menu-card menu-about" onclick="showScreen('about')">
+          <div class="menu-card-content">
+            <strong>О проекте</strong>
+            <small>Цель и идея</small>
+          </div>
+        </button>
+      </div>
+
+      <div class="info-card">
+        <h2>Что это за приложение?</h2>
+        <p>
+          «Курултай: Битва легенд» — это цифровой компаньон к настольной игре,
+          который помогает игрокам изучать персонажей, проходить викторину и
+          применять знания во время партии.
+        </p>
+      </div>
+
+      <div class="factions-preview">
+        <h2>Фракции игры</h2>
+
+        <button class="faction-preview light-preview" onclick="filterFromHome('Свет')">
+          <span>☀</span>
+          <div>
+            <strong>Сила Света</strong>
+            <p>
+              Исторические личности, защитники, батыры и светлые мифологические образы.
+            </p>
+          </div>
+        </button>
+
+        <button class="faction-preview dark-preview" onclick="filterFromHome('Тьма')">
+          <span>☾</span>
+          <div>
+            <strong>Сила Тьмы</strong>
+            <p>
+              Опасные духи, чудовища, тёмные воины и фольклорные существа.
+            </p>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- Энциклопедия -->
+    <section id="screen-heroes" class="screen screen-heroes">
+      <h2>Энциклопедия</h2>
+
+      <p class="section-description">
+        Исторические, мифологические и авторские персонажи настольной игры.
+      </p>
+
+      <div class="search-box">
+        <input
+          id="character-search"
+          type="text"
+          placeholder="Поиск персонажа..."
+          oninput="renderCharacters()"
+        />
+      </div>
+
+      <div class="filter-group">
+        <p class="filter-title">Фракция</p>
+
+        <div class="filters">
+          <button class="active-filter" data-faction="all" onclick="setFactionFilter('all', this)">
+            Все
+          </button>
+
+          <button data-faction="Свет" onclick="setFactionFilter('Свет', this)">
+            Свет
+          </button>
+
+          <button data-faction="Тьма" onclick="setFactionFilter('Тьма', this)">
+            Тьма
+          </button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <p class="filter-title">Тип</p>
+
+        <div class="filters">
+          <button class="active-filter" data-type="all" onclick="setTypeFilter('all', this)">
+            Все
+          </button>
+
+          <button data-type="Исторический персонаж" onclick="setTypeFilter('Исторический персонаж', this)">
+            Исторические
+          </button>
+
+          <button data-type="Мифологический персонаж" onclick="setTypeFilter('Мифологический персонаж', this)">
+            Мифологические
+          </button>
+
+          <button data-type="Собирательный образ" onclick="setTypeFilter('Собирательный образ', this)">
+            Собирательные
+          </button>
+        </div>
+      </div>
+
+      <div id="characters-list" class="characters-list"></div>
+
+      <p id="empty-message" class="empty-message">
+        Персонажи не найдены.
+      </p>
+    </section>
+
+    <!-- Подробная страница персонажа -->
+    <section id="screen-detail" class="screen screen-detail">
+      <button class="back-button" onclick="showScreen('heroes')">
+        ← Назад к энциклопедии
+      </button>
+
+      <div class="detail-hero">
+        <div id="detail-image" class="detail-image"></div>
+
+        <div class="detail-info info-card">
+          <h2 id="detail-name"></h2>
+
+          <div class="detail-tags">
+            <span id="detail-faction"></span>
+            <span id="detail-role"></span>
+            <span id="detail-type"></span>
+          </div>
+
+          <p id="detail-short"></p>
+          <div id="detail-lore"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Викторина -->
+    <section id="screen-quiz" class="screen screen-quiz">
+      <h2>Викторина</h2>
+
+      <p class="section-description">
+        Вопросы Курултая влияют на ход настольной партии.
+      </p>
+
+      <div id="quiz-start" class="quiz-card">
+        <h3>Выбери режим викторины</h3>
+
+        <div class="quiz-mode-grid">
+          <button class="quiz-mode-card" onclick="startQuiz('announce')">
+            <span>1</span>
+            <strong>Объявить вопрос Курултая</strong>
+            <small>
+              1 вопрос и небольшой случайный бонус.
+            </small>
+          </button>
+
+          <button class="quiz-mode-card" onclick="startQuiz('card')">
+            <span>5</span>
+            <strong>Разыграть карту «Вопрос Курултая»</strong>
+            <small>
+              5 вопросов, сила бонуса зависит от результата.
+            </small>
+          </button>
+
+          <button class="quiz-mode-card" onclick="startQuiz('training')">
+            <span>∞</span>
+            <strong>Тренировка</strong>
+            <small>
+              Вопросы без игрового эффекта.
+            </small>
+          </button>
+        </div>
+      </div>
+
+      <div id="quiz-game" class="quiz-card hidden">
+        <span id="quiz-mode-label" class="quiz-mode-label"></span>
+
+        <div class="quiz-progress">
+          <span id="quiz-counter">Вопрос 1 из 5</span>
+          <span id="quiz-score">Верно: 0</span>
+        </div>
+
+        <h3 id="question-text"></h3>
+
+        <div id="answers" class="answers"></div>
+
+        <div id="quiz-result" class="quiz-result"></div>
+
+        <button
+          id="next-question-button"
+          class="main-button hidden"
+          onclick="nextQuestion()"
+        >
+          Следующий вопрос
+        </button>
+      </div>
+
+      <div id="quiz-final" class="quiz-card hidden">
+        <h3>Итог Курултая</h3>
+
+        <div class="final-score">
+          <span id="final-score-text"></span>
+        </div>
+
+        <p id="final-rank"></p>
+        <p id="final-effect"></p>
+
+        <button class="main-button" onclick="resetQuiz()">
+          Вернуться к выбору режима
+        </button>
+      </div>
+    </section>
+
+    <!-- Правила -->
+    <section id="screen-rules" class="screen screen-rules">
+      <h2>Правила</h2>
+
+      <p class="section-description">
+        Как использовать приложение во время партии.
+      </p>
+
+      <div class="info-card">
+        <h3>Как использовать приложение</h3>
+        <p>
+          Приложение используется как цифровой компаньон к настольной игре.
+          В нём игроки могут читать энциклопедию персонажей, уточнять правила
+          и проходить викторину, которая влияет на ход партии.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Правила викторины</h3>
+        <p>
+          Викторина связана с механикой «Вопроса Курултая». Игроки отвечают
+          на вопросы по истории, культуре, мифологии и персонажам игры.
+        </p>
+
+        <ul>
+          <li>варианты ответов каждый раз перемешиваются;</li>
+          <li>вопросы выбираются случайно из общей базы;</li>
+          <li>при правильном ответе игрок получает игровой бонус;</li>
+          <li>при неправильном ответе бонус не применяется;</li>
+          <li>эффект бонуса выбирается случайным образом.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Игровые эффекты викторины</h3>
+
+        <p>
+          В приложении используются два варианта викторины, которые по-разному
+          влияют на ход партии: короткий «Вопрос Курултая» и расширенная викторина
+          по карте «Вопрос Курултая».
+        </p>
+
+        <div class="inner-rule-card">
+          <h4>1. Объявление «Вопроса Курултая»</h4>
+
+          <p>
+            Один раз за раунд игрок может объявить «Вопрос Курултая» без розыгрыша
+            специальной карты. В этом случае он отвечает только на один вопрос.
+          </p>
+
+          <ul>
+            <li>правильный ответ — игрок получает малый случайный бонус;</li>
+            <li>неправильный ответ — бонус не применяется;</li>
+            <li>использовать этот вариант можно только один раз за раунд.</li>
+          </ul>
+        </div>
+
+        <div class="inner-rule-card">
+          <h4>2. Карта «Вопрос Курултая»</h4>
+
+          <p>
+            Если игрок разыгрывает специальную карту «Вопрос Курултая»,
+            он проходит серию из пяти вопросов подряд.
+          </p>
+
+          <ul>
+            <li>0–1 правильный ответ — бонус не применяется или даётся очень слабый эффект;</li>
+            <li>2–3 правильных ответа — игрок получает средний бонус;</li>
+            <li>4–5 правильных ответов — игрок получает сильный бонус;</li>
+            <li>чем больше правильных ответов, тем сильнее влияние на ход партии.</li>
+          </ul>
+        </div>
+
+        <div class="inner-rule-card">
+          <h4>Примеры бонусов</h4>
+
+          <ul>
+            <li>усилить одну свою карту на +1 или +2;</li>
+            <li>ослабить карту противника на -1 или -2;</li>
+            <li>посмотреть верхнюю карту своей колоды;</li>
+            <li>переместить одну свою карту в другой допустимый ряд;</li>
+            <li>защитить карту или ряд от негативного эффекта;</li>
+            <li>заменить одну карту из руки на верхнюю карту колоды;</li>
+            <li>отменить действие слабого отрицательного эффекта.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-card warning-card">
+        <h3>Важно</h3>
+
+        <p>
+          Бонусы викторины не должны полностью отменять основные правила игры.
+          Они используются как дополнительные небольшие преимущества, чтобы
+          сохранить баланс партии и связать образовательную часть приложения
+          с игровым процессом.
+        </p>
+      </div>
+    </section>
+
+    <!-- О проекте -->
+    <section id="screen-about" class="screen screen-about">
+      <h2>О проекте</h2>
+
+      <div class="info-card">
+        <h3>Цель приложения</h3>
+        <p>
+          Приложение создано как мультимедийное дополнение к настольной карточной игре
+          «Курултай: Битва легенд».
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Образовательная задача</h3>
+        <p>
+          Энциклопедия знакомит пользователя с персонажами татарской истории,
+          фольклора и авторскими образами, а викторина закрепляет знания.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Технологии</h3>
+        <p>
+          Приложение реализовано на HTML, CSS и JavaScript и может быть размещено
+          через GitHub Pages. Формат PWA позволяет добавить его на главный экран смартфона.
+        </p>
+      </div>
+    </section>
+
+    <!-- Нижняя панель -->
+    <nav class="bottom-nav">
+      <button id="nav-home" class="active-nav" onclick="showScreen('home')">
+        <img src="images/nav/home.png" alt="Главная" class="nav-icon" />
+        <span>Главная</span>
+      </button>
+
+      <button id="nav-heroes" onclick="showScreen('heroes')">
+        <img src="images/nav/heroes.png" alt="Герои" class="nav-icon" />
+        <span>Герои</span>
+      </button>
+
+      <button id="nav-quiz" onclick="showScreen('quiz')">
+        <img src="images/nav/quiz.png" alt="Викторина" class="nav-icon" />
+        <span>Викторина</span>
+      </button>
+
+      <button id="nav-rules" onclick="showScreen('rules')">
+        <img src="images/nav/rules.png" alt="Правила" class="nav-icon" />
+        <span>Правила</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="characters.js?v=15"></script>
+  <script src="questions.js?v=15"></script>
+  <script src="app.js?v=15"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./service-worker.js?v=8")
+          .then(function () {
+            console.log("Service Worker подключён");
+          })
+          .catch(function (error) {
+            console.log("Ошибка Service Worker:", error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
