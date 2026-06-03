@@ -14,9 +14,6 @@
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#2a1036" />
 
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Курултай" />
   <link rel="apple-touch-icon" href="images/app-icons/icon-192.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +24,7 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="style.css?v=16" />
+  <link rel="stylesheet" href="style.css?v=18" />
 </head>
 
 <body>
@@ -446,14 +443,14 @@
 
   </div>
 
-  <script src="characters.js?v=16"></script>
-  <script src="questions.js?v=16"></script>
-  <script src="app.js?v=16"></script>
+  <script src="characters.js?v=18"></script>
+  <script src="questions.js?v=18"></script>
+  <script src="app.js?v=18"></script>
 
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("./service-worker.js?v=8")
+        navigator.serviceWorker.register("./service-worker.js?v=18")
           .then(function () {
             console.log("Service Worker подключён");
           })

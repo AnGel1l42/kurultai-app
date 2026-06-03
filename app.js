@@ -12,6 +12,12 @@ let selectedAnswer = false;
 /* ----------------------------- */
 
 function scrollToTopNow() {
+  const activeScreen = document.querySelector(".screen.active");
+
+  if (activeScreen) {
+    activeScreen.scrollTop = 0;
+  }
+
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
