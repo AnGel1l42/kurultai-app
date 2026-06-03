@@ -1,13 +1,13 @@
-const CACHE_NAME = "kurultai-app-v15";
+const CACHE_NAME = "kurultai-app-v16";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
 
-  "./style.css?v=15",
-  "./app.js?v=15",
-  "./characters.js?v=15",
-  "./questions.js?v=15",
+  "./style.css?v=16",
+  "./app.js?v=16",
+  "./characters.js?v=16",
+  "./questions.js?v=16",
 
   "./manifest.json",
 
